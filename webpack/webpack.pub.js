@@ -6,7 +6,7 @@ const baseConfig = require('./webpack.config.js');
 const config = merge(baseConfig, {
   output: {
     path: path.resolve(__dirname, '../_pub/assets/js'),
-    filename: '[name].min.js'
+    filename: '[name].js'
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),

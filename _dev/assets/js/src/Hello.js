@@ -1,13 +1,15 @@
 class Hello{
-  constructor(){
+  constructor(name){
+    this.name = name;
     this.init();
   }
 
   init(){
-    console.log('hello world.'); 
+    sayHello(this.name);
   }
   sayHello(name){
-    console.log(`Hello, #{name}`);
+    console.log(`Hi, hello ${name}`);
+    console.log(`How do you do?`);
   }
 }
 
