@@ -19,7 +19,7 @@
     "serve:init": "browser-sync start --server --serveStatic _pre/ --files '_pre'",
     "serve:reload": "browser-sync reload",
     "publish": "npm-run-all -p publish:js",
-    "publish:js": "webpack --config webpack/webpack.pub.js"
+    "publish:js": "webpack --config webpack/webpack.pub.js && mkdir -p log && git diff > ./log/diff.`date '+%Y%m%d_%H%M%S'`"
   },
   "author": "",
   "license": "ISC",

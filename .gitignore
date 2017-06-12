@@ -118,4 +118,7 @@ $RECYCLE.BIN/
 # npm package
 node_modules
 
+# log
+log
+
 # End of https://www.gitignore.io/api/osx,ruby,linux,windows
