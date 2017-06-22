@@ -93,7 +93,70 @@
 [https://www.webprofessional.jp/javascript-functional-testing-nightwatch-js/](https://www.webprofessional.jp/javascript-functional-testing-nightwatch-js/)  
 [http://blog.mmmcorp.co.jp/blog/2015/09/24/use-nightwatch/](http://blog.mmmcorp.co.jp/blog/2015/09/24/use-nightwatch/)  
 [https://liginc.co.jp/198683](https://liginc.co.jp/198683)  
+  
+  
+# リグレッション(回帰)テスト  
 
+## - PhantomCSSによるビジュアルリグレッションテスト  
+ページを開いて、特定のブロックが希望通りの見た目になっているかをチェックするテスト。  
+ヘッドレスブラウザを立ち上げ、基準となる見た目をスクリーンショットで画像保存。スタイル修正後、PhantomCSSを実行しスクリーンショットを取得、オリジナル画像と比較して相違点なければテストをパスしたことになる。 
+PhantomCSSやSlimerJSと相互作用する[CasperJS](https://github.com/casperjs/casperjs)、ヘッドレスブラウザの[PhantomJS](http://phantomjs.org/)・[SlimerJS](https://slimerjs.org/)、イメージ比較するライブラリ[Resemble.js](http://huddle.github.io/Resemble.js/)で構成される。  
+  
+設定手順:  
+1. 比較するhtmlファイルを作成する。  
+  
+2. PhantomCSSをインストールする。  
+`yarn add phantomcss casperjs phantomjs-prebuilt --dev`  
+  
+3. テストスイートを作成する。  
+`/scripts/test.js`  
+    var phantomcss = require('phantomcss');
+
+    // start a casper test
+    casper.test.begin('Tags', function(test){
+
+      phantomcss.init({
+        rebase: casper.cli.get('rebase')
+      });
+
+      // open page
+      casper.start('http://localhost:3000/');
+
+      // set your preferred view port size
+      casper.viewport(1024, 768);
+
+      casper.then(function(){
+        // take the screenshot of the whole body element and save it under 'body.png'. The first parameter is actually a CSS selector
+        phantomcss.screenshot('body', 'body');
+      });
+
+      casper.then(function now_check_the_screenshots(){
+        // compare screenshots
+        phantomcss.compareAll();
+      });
+
+      // run tests
+      casper.run(function(){
+        console.log('\nTHE END.');
+        casper.test.done();
+      });
+    });
+  
+4. npm scriptsに以下を追加。  
+`"phantomcss": "casperjs test ./scripts/test.js"`  
+  
+5. `npm run phantomcss`を実行すると、初めての場合基準となるスクリーンショットが`screenshots`ディレクトリ内に格納される。  
+  
+6. スタイルを編集して再度5.のコマンドを実行すると、スクリーンショットを比較し相違点を`failures`ディレクトリに格納される。  
+変更箇所がハイライトとして表示される。  
+  
+7. 変更点を許可する場合は、`-- --rebase`引数を追加したコマンドを実行すると、新しく基準となる。  
+`npm run phantomcss -- --rebase`  
+
+  
+参考)  
+[https://www.webprofessional.jp/visual-regression-testing-with-phantomcss/](https://www.webprofessional.jp/visual-regression-testing-with-phantomcss/)  
+  
 # 納品管理  
   
 ## - 圧縮したJavascriptの差分チェック方法(js-beautify)  
