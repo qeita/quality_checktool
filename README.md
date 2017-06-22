@@ -3,6 +3,9 @@
 [README整理中]  
 漏れ抜けがないか確認できるチェックツール系を調べつつ試し、そこで得た知見をまとめる。  
   
+
+# 機能テスト  
+  
 ## - End-to-Endブラウザテスト自動化(Nightwatch)  
   
 設定手順:  
@@ -12,7 +15,7 @@
 2. Selenium Serverをダウンロード  
 ※ [Selenium Download Page](http://selenium-release.storage.googleapis.com/index.html) よりダウンロードする方法と、npm経由でダウンロードの方法がある(ここでは後者)。  
 ※ yarnでインストールした際、node 6.9以上でないとダウンロードできなかった。
-`npm install webdriver-manager --save`、又は`yarn add webdriver-manager --dev`  
+`npm install webdriver-manager --save`、又は `yarn add webdriver-manager --dev`  
   
 3. `webdriver-manager`のアップデート及びインストールしたいブラウザのオプション指定  
 `./node_modules/.bin/webdriver-manager update`  
@@ -91,7 +94,8 @@
 [http://blog.mmmcorp.co.jp/blog/2015/09/24/use-nightwatch/](http://blog.mmmcorp.co.jp/blog/2015/09/24/use-nightwatch/)  
 [https://liginc.co.jp/198683](https://liginc.co.jp/198683)  
 
-
+# 納品管理  
+  
 ## - 圧縮したJavascriptの差分チェック方法(js-beautify)  
   
 設定手順:  
