@@ -19,7 +19,8 @@
     "serve:init": "browser-sync start --server --serveStatic _pre/ --files '_pre'",
     "serve:reload": "browser-sync reload",
     "publish": "npm-run-all -p publish:js",
-    "publish:js": "webpack --config webpack/webpack.pub.js && mkdir -p log && git diff > ./log/diff.`date '+%Y%m%d_%H%M%S'`"
+    "publish:js": "webpack --config webpack/webpack.pub.js && mkdir -p log && git diff > ./log/diff.`date '+%Y%m%d_%H%M%S'`",
+    "nightwatch": "nightwatch"
   },
   "author": "",
   "license": "ISC",
@@ -31,10 +32,12 @@
     "chokidar-cli": "^1.2.0",
     "cpx": "^1.5.0",
     "js-beautify": "^1.6.14",
+    "nightwatch": "^0.9.16",
     "npm-run-all": "^4.0.2",
     "pug": "^2.0.0-rc.1",
     "pug-cli": "^1.0.0-alpha6",
     "rimraf": "^2.6.1",
+    "webdriver-manager": "^12.0.6",
     "webpack": "^2.5.1",
     "webpack-merge": "^4.1.0"
   }
