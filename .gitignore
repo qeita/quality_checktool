@@ -122,5 +122,7 @@ node_modules
 log
 selenium-debug.log
 reports
+failures
+screenshots
 
 # End of https://www.gitignore.io/api/osx,ruby,linux,windows
