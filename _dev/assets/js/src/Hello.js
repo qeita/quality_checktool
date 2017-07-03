@@ -5,7 +5,7 @@ class Hello{
   }
 
   init(){
-    sayHello(this.name);
+    this.sayHello(this.name);
   }
   sayHello(name){
     console.log(`Hi, hello ${name}`);

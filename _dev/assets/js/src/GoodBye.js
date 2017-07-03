@@ -5,7 +5,7 @@ class GoodBye{
   }
 
   init(){
-    sayGoodBye(this.name);
+    this.sayGoodBye(this.name);
   }
   sayGoodBye(name){
     console.log(`Hi, GoodBye ${name}.`);
