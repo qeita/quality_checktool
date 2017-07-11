@@ -1,13 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
-  context: path.resolve(__dirname, '../_dev/assets/js'),
+  context: path.resolve(__dirname, '../_dev/assets'),
   entry: {
-    app: './app.js'
+    app: './js/app.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -18,10 +19,19 @@ const config = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader'
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'postcss-loader',
+        })
       }
     ]
   },
+  plugins: [
+    new ExtractTextPlugin({
+      filename: './css/style.css',
+      allChunks: true
+    })
+  ],
   stats: {
     colors: true
   },
